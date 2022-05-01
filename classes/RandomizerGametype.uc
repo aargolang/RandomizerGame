@@ -3,68 +3,64 @@ class RandomizerGametype extends xDeathMatch;
 // Randomizer: Random weapons every X minutes Y times
 // 
 // Ending conditions:
-//  - Highest number of randomizer rounds have been played (X.Y seconds)
+//  - Highest number of randomizations have been played (X.Y seconds)
 //  - Goal kill score has been reached
 //
-// TODO: remove the TimeLimit condition of ending a match in
-//      - StartMatch()
-//      - Reset()
-//      - InitGame()
-//      - GetServerDetails()
-//      - InitReplicationInfo()
-//      - EndGame()
-//      - MatchInProgress
-// TODO: remove RemainingTime from:
-//      - PostBeginPlay()
-//      - Reset()
-//      - JustStarted()
-//      - CheckReady()
-//      - InitGame()
-//      - StartMatch()
-//      - MatchInProgress
-// TODO: write Time() method in MatchInProgress state
-// TODO: convert this class to extend DeathMatch instead of xDeathMatch
-//      - Port needed logic from xDeathMatch
+// TODO: make time limit based on the user input number of randomizations
+// TODO: replace game settings options for time limit with # randomizations
+// TODO: give player a random weapon at the start of the game
 //=============================================================================
 
 
-
-// Removed setting time to 10.0
-// TODO: remove the notion of setting the remaining time
-function StartMatch()
+///////////////////////////////////////////////////////////////////////////////
+// RestartPlayer (extended from DeathMatch.uc)
+///////////////////////////////////////////////////////////////////////////////
+function RestartPlayer(Controller aPlayer)
 {
-    local bool bTemp;
-	local int Num;
-
-    GotoState('MatchInProgress');
-    if ( Level.NetMode == NM_Standalone )
-        RemainingBots = InitialBots;
-    else
-        RemainingBots = 0;
-    GameReplicationInfo.RemainingMinute = RemainingTime;
-    Super.StartMatch();
-    bTemp = bMustJoinBeforeStart;
-    bMustJoinBeforeStart = false;
-    while ( NeedPlayers() && (Num<16) )
-    {
-		if ( AddBot() )
-			RemainingBots--;
-		Num++;
-    }
-    bMustJoinBeforeStart = bTemp;
-    log("START MATCH");
+    BaseMutator.DefaultWeaponName = GetRanomWeapon();
+    Super.RestartPlayer(aPlayer);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// MatchInProgress state
+// GetRandomWeapon
 // 
-// This is mostly copied from xDeathMatch.uc
+// TODO: Return a random weapon from the currently valid pool of weapons
+///////////////////////////////////////////////////////////////////////////////
+function Weapon GetRandomWeapon()
+{
+    Weapon RandomWeapon;
+
+    return RandomWeapon;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// InitGame (extended from DeathMatch.uc)
+// 
+// TODO: parse Randomizations and RandomInterval from the setup UI
+// TODO: Set timelimit based on randomizations and time interval
+// NOTE: We might need to completely override the one in DeathMatch.uc and
+//       call Super(UnrealMPGameInfo).InitGame to bypass Deathmatch InitGame
+///////////////////////////////////////////////////////////////////////////////
+event InitGame( string Options, out string Error )
+{
+    Super.InitGame();
+
+    // TimeLimit = Randomizations*RandomizationInterval;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// MatchInProgress state (extended from DeathMatch.uc)
+// 
+// This is mostly copied from DeathMatch.uc
+// 
+// TODO: implement logic for random weapon switch once all of the other 
+//       functionality has been ironed out. See pseudocode in Timer()
 ///////////////////////////////////////////////////////////////////////////////
 State MatchInProgress
 {
     function Timer()
     {
-        // Pseodocode
+        // TODO: Pseodocode of game logic
         //
         // increment local second counter
         // check if we need to swap everyone's guns out
@@ -139,14 +135,4 @@ defaultproperties
     GoalScore=1
     bAutoNumBots=True
     TimeLimit=20
-    // MapListType="XInterface.MapListDeathMatch"
-    // HUDType="XInterface.HudCDeathMatch"
-	// DeathMessageClass=class'XGame.xDeathMessage'
-
-    // ScreenShotName="UT2004Thumbnails.DMShots"
-    // DecoTextName="XGame.Deathmatch"
-
-    // Acronym="DM"
-    // MapPrefix="DM"
-    // DefaultEnemyRosterClass="XGame.xDMRoster"
 }
