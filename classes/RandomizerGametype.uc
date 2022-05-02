@@ -12,12 +12,20 @@ class RandomizerGametype extends xDeathMatch;
 //=============================================================================
 
 
+var String WeaponList[5];
+
+event PreBeginPlay()
+{
+    GetRandomWeapon();
+    Super.PreBeginPlay();
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // RestartPlayer (extended from DeathMatch.uc)
 ///////////////////////////////////////////////////////////////////////////////
 function RestartPlayer(Controller aPlayer)
 {
-    BaseMutator.DefaultWeaponName = GetRanomWeapon();
+    GetRandomWeapon();
     Super.RestartPlayer(aPlayer);
 }
 
@@ -26,11 +34,19 @@ function RestartPlayer(Controller aPlayer)
 // 
 // TODO: Return a random weapon from the currently valid pool of weapons
 ///////////////////////////////////////////////////////////////////////////////
-function Weapon GetRandomWeapon()
+function GetRandomWeapon()
 {
-    Weapon RandomWeapon;
+    local String RandomWeaponName;
+    local int i;
+    local int w;
 
-    return RandomWeapon;
+    w = ArrayCount(WeaponList);
+
+    i = Rand(w);
+    RandomWeaponName = WeaponList[i];
+
+    BaseMutator.DefaultWeaponName = RandomWeaponName;
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -43,7 +59,7 @@ function Weapon GetRandomWeapon()
 ///////////////////////////////////////////////////////////////////////////////
 event InitGame( string Options, out string Error )
 {
-    Super.InitGame();
+    Super.InitGame(Options, Error);
 
     // TimeLimit = Randomizations*RandomizationInterval;
 }
@@ -56,7 +72,7 @@ event InitGame( string Options, out string Error )
 // TODO: implement logic for random weapon switch once all of the other 
 //       functionality has been ironed out. See pseudocode in Timer()
 ///////////////////////////////////////////////////////////////////////////////
-State MatchInProgress
+/*State MatchInProgress
 {
     function Timer()
     {
@@ -126,13 +142,22 @@ State MatchInProgress
         PlayStartupMessage();
         StartupStage = 6;
     }
-}
+}*/
 
 defaultproperties
 {
     GameName="Randomizer"
     Description="FFA except everyone's weapons are randomized every so often for a set amount of rounds"
-    GoalScore=1
+    GoalScore=10
     bAutoNumBots=True
     TimeLimit=20
+    MutatorClass="RandomizerGame.RandMutator"
+
+    //Test weapon array
+    WeaponList[0]="xWeapons.AssaultRifle"
+    WeaponList[1]="xWeapons.LinkGun"
+    WeaponList[2]="xWeapons.FlakCannon"
+    WeaponList[3]="xWeapons.RocketLauncher"
+    WeaponList[4]="InstaFlak.SuperFlakCannon"
+
 }

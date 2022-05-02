@@ -1,1 +1,1 @@
-del ..\System\Randomizer.* && ..\System\ucc.exe make
+del ..\System\RandomizerGame.* && ..\System\ucc.exe make
