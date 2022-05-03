@@ -17,43 +17,49 @@ class RandMutator extends DMMutator;
 
 // }
 
-// event PreBeginPlay()
-// {
-//     GetRandomWeapon();
-//     Super.PreBeginPlay();
-// }
+event PreBeginPlay()
+{
+    // DefaultWeaponName = class'RandomizerGametype'.default.WeaponList[Rand(class'RandomizerGametype'.default.WeaponList.Length)];
+    Super.PreBeginPlay();
+}
 
 function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 {
     local int i;
     local int w;
+    local String WeapLog;
     bSuperRelevant = 0;
 
     if (Other.IsA('UTWeaponPickup'))
     {
         return false;
     }
-    if (Other.IsA('UTAmmoPickup'))
+    else if (Other.IsA('UTAmmoPickup'))
     {
         return false;
     }
-    if(Other.IsA('xWeaponBase'))
+    else if(Other.IsA('xWeaponBase'))
     {
         return false;
     }
-    if(Other.IsA('Weapon'))
+    else if(Other.IsA('Weapon'))
     {
-        w = ArrayCount(class'RandomizerGametype'.default.WeaponList);
-
-        for(i=0; i <= w; i++)
+        // w = ArrayCount(class'RandomizerGametype'.default.WeaponList);
+        w = class'RandomizerGametype'.default.WeaponList.Length;
+        for(i=0; i < w; i++)
         {
-            if(GetItemName(string(Weapon(Other))) != class'RandomizerGametype'.WeaponList[i])
+            
+            if(string(Weapon(Other)) != class'RandomizerGametype'.default.WeaponList[i])
             {
+                log(string(Weapon(Other)));
             return false;
             }
         }
     }
-    return true;
+    else
+    {
+        return true;
+    }
 }
 
 defaultproperties

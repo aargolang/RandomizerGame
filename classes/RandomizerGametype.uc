@@ -12,11 +12,11 @@ class RandomizerGametype extends xDeathMatch;
 //=============================================================================
 
 
-var String WeaponList[5];
+var array<string> WeaponList;
 
 event PreBeginPlay()
 {
-    GetRandomWeapon();
+    // GetRandomWeapon();
     Super.PreBeginPlay();
 }
 
@@ -40,8 +40,9 @@ function GetRandomWeapon()
     local int i;
     local int w;
 
-    w = ArrayCount(WeaponList);
+    // w = ArrayCount(WeaponList);
 
+    w = WeaponList.Length;
     i = Rand(w);
     RandomWeaponName = WeaponList[i];
 
@@ -60,6 +61,7 @@ function GetRandomWeapon()
 event InitGame( string Options, out string Error )
 {
     Super.InitGame(Options, Error);
+    GetRandomWeapon();
 
     // TimeLimit = Randomizations*RandomizationInterval;
 }
