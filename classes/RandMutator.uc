@@ -1,33 +1,71 @@
 class RandMutator extends DMMutator;
 
-// var String WeaponList[5];
+var array<String> WeaponList;
 
-// function GetRandomWeapon()
-// {
-//     local String RandomWeaponName;
-//     local int i;
-//     local int w;
-
-//     w = ArrayCount(WeaponList);
-
-//     i = Rand(w);
-//     RandomWeaponName = WeaponList[i];
-
-//     DefaultWeaponName = RandomWeaponName;
-
-// }
-
-event PreBeginPlay()
+function PostBeginPlay()
 {
-    // DefaultWeaponName = class'RandomizerGametype'.default.WeaponList[Rand(class'RandomizerGametype'.default.WeaponList.Length)];
-    Super.PreBeginPlay();
+    Super.PostBeginPlay();
 }
+
+function ModifyPlayer(Pawn Other)
+{
+    Super.ModifyPlayer(Other);
+    // log("player modified");
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// GetRandomWeapon
+// 
+// TODO: Return a random weapon from the currently valid pool of weapons
+///////////////////////////////////////////////////////////////////////////////
+function GetRandomWeapon()
+{
+    local int i;
+    i = Rand(WeaponList.Length);
+    
+    log("Old Default Weapon: "$DefaultWeaponName);
+
+    DefaultWeaponName = WeaponList[i];
+
+    log("New Default Weapon: "$DefaultWeaponName);
+
+}
+
+/* return what should replace the default weapon
+   mutators further down the list override earlier mutators
+*/
+function Class<Weapon> GetDefaultWeapon()
+{
+	local Class<Weapon> W;
+
+    log("GetDefaultWeapon() called");
+
+	if ( NextMutator != None )
+	{
+		W = NextMutator.GetDefaultWeapon();
+		if ( W == None )
+			W = MyDefaultWeapon();
+	}
+	else
+		W = MyDefaultWeapon();
+	return W;
+}
+
+// Put call to GetRandomWeapon here, this gets called for every player spawn
+function class<Weapon> MyDefaultWeapon()
+{
+    log("MyDefaultWweapon() called");
+
+	GetRandomWeapon();
+	DefaultWeapon = class<Weapon>(DynamicLoadObject(DefaultWeaponName, class'Class'));
+
+	return DefaultWeapon;
+}
+
+
 
 function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 {
-    local int i;
-    local int w;
-    local String WeapLog;
     bSuperRelevant = 0;
 
     if (Other.IsA('UTWeaponPickup'))
@@ -44,30 +82,24 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
     }
     else if(Other.IsA('Weapon'))
     {
-        // w = ArrayCount(class'RandomizerGametype'.default.WeaponList);
-        w = class'RandomizerGametype'.default.WeaponList.Length;
-        for(i=0; i < w; i++)
+        log("check weapon: "$GetItemName(string(Other)));
+
+        if(GetItemName(string(Other)) != GetItemName(string(DefaultWeapon)))
         {
-            
-            if(string(Weapon(Other)) != class'RandomizerGametype'.default.WeaponList[i])
-            {
-                log(string(Weapon(Other)));
+            log("not a valid weapon: "$GetItemName(string(Other)));
             return false;
-            }
         }
+        log("valid weapon: "$GetItemName(string(Other)));
     }
-    else
-    {
-        return true;
-    }
+    return true;
 }
 
 defaultproperties
 {
     //Test weapon array
-    // WeaponList[0]="xWeapons.AssaultRifle"
-    // WeaponList[1]="xWeapons.LinkGun"
-    // WeaponList[2]="xWeapons.FlakCannon"
-    // WeaponList[3]="xWeapons.RocketLauncher"
-    // WeaponList[4]="InstaFlak.SuperFlakCannon"
+    WeaponList[0]="xWeapons.BioRifle"
+    WeaponList[1]="xWeapons.LinkGun"
+    WeaponList[2]="xWeapons.FlakCannon"
+    WeaponList[3]="xWeapons.RocketLauncher"
+    WeaponList[4]="InstaFlak.SuperFlakCannon"
 }

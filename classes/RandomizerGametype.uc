@@ -12,59 +12,63 @@ class RandomizerGametype extends xDeathMatch;
 //=============================================================================
 
 
-var array<string> WeaponList;
+// var array<string> WeaponList;
 
-event PreBeginPlay()
-{
-    // GetRandomWeapon();
-    Super.PreBeginPlay();
-}
+// event PreBeginPlay()
+// {
+//     // GetRandomWeapon();
+//     Super.PreBeginPlay();
+// }
 
 ///////////////////////////////////////////////////////////////////////////////
 // RestartPlayer (extended from DeathMatch.uc)
 ///////////////////////////////////////////////////////////////////////////////
 function RestartPlayer(Controller aPlayer)
 {
-    GetRandomWeapon();
+    // class'RandMutator'.GetRandomWeapon();
+    // aPlayer.Pawn.CreateInventory(BaseMutator.DefaultWeaponName);
+    log("RestartPlayer called");
+    
     Super.RestartPlayer(aPlayer);
 }
 
-///////////////////////////////////////////////////////////////////////////////
-// GetRandomWeapon
-// 
-// TODO: Return a random weapon from the currently valid pool of weapons
-///////////////////////////////////////////////////////////////////////////////
-function GetRandomWeapon()
-{
-    local String RandomWeaponName;
-    local int i;
-    local int w;
+// ///////////////////////////////////////////////////////////////////////////////
+// // GetRandomWeapon
+// // 
+// // TODO: Return a random weapon from the currently valid pool of weapons
+// ///////////////////////////////////////////////////////////////////////////////
+// function GetRandomWeapon()
+// {
+//     local String RandomWeaponName;
+//     local int i;
+//     local int w;
 
-    // w = ArrayCount(WeaponList);
+//     // w = ArrayCount(WeaponList);
 
-    w = WeaponList.Length;
-    i = Rand(w);
-    RandomWeaponName = WeaponList[i];
+//     w = WeaponList.Length;
+//     i = Rand(w);
+//     RandomWeaponName = WeaponList[i];
+//     log(RandomWeaponName);
 
-    BaseMutator.DefaultWeaponName = RandomWeaponName;
+//     BaseMutator.default.DefaultWeaponName = RandomWeaponName;
 
-}
+// }
 
-///////////////////////////////////////////////////////////////////////////////
-// InitGame (extended from DeathMatch.uc)
-// 
-// TODO: parse Randomizations and RandomInterval from the setup UI
-// TODO: Set timelimit based on randomizations and time interval
-// NOTE: We might need to completely override the one in DeathMatch.uc and
-//       call Super(UnrealMPGameInfo).InitGame to bypass Deathmatch InitGame
-///////////////////////////////////////////////////////////////////////////////
-event InitGame( string Options, out string Error )
-{
-    Super.InitGame(Options, Error);
-    GetRandomWeapon();
+// ///////////////////////////////////////////////////////////////////////////////
+// // InitGame (extended from DeathMatch.uc)
+// // 
+// // TODO: parse Randomizations and RandomInterval from the setup UI
+// // TODO: Set timelimit based on randomizations and time interval
+// // NOTE: We might need to completely override the one in DeathMatch.uc and
+// //       call Super(UnrealMPGameInfo).InitGame to bypass Deathmatch InitGame
+// ///////////////////////////////////////////////////////////////////////////////
+// event InitGame( string Options, out string Error )
+// {
+//     Super.InitGame(Options, Error);
+//     GetRandomWeapon();
 
-    // TimeLimit = Randomizations*RandomizationInterval;
-}
+//     // TimeLimit = Randomizations*RandomizationInterval;
+// }
 
 ///////////////////////////////////////////////////////////////////////////////
 // MatchInProgress state (extended from DeathMatch.uc)
@@ -155,11 +159,11 @@ defaultproperties
     TimeLimit=20
     MutatorClass="RandomizerGame.RandMutator"
 
-    //Test weapon array
-    WeaponList[0]="xWeapons.AssaultRifle"
-    WeaponList[1]="xWeapons.LinkGun"
-    WeaponList[2]="xWeapons.FlakCannon"
-    WeaponList[3]="xWeapons.RocketLauncher"
-    WeaponList[4]="InstaFlak.SuperFlakCannon"
+    // //Test weapon array
+    // WeaponList[0]="xWeapons.BioRifle"
+    // WeaponList[1]="xWeapons.LinkGun"
+    // WeaponList[2]="xWeapons.FlakCannon"
+    // WeaponList[3]="xWeapons.RocketLauncher"
+    // WeaponList[4]="InstaFlak.SuperFlakCannon"
 
 }
