@@ -97,6 +97,7 @@ State MatchInProgress
 
         log("Timer() called, NumResets="$string(NumResets));
         NumResets -= 1;
+        TimeLimit -= ResetInterval;
         log("NumResets="$string(NumResets));
         if (NumResets <= 0)
         {
