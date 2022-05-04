@@ -12,7 +12,8 @@ class RandomizerGametype extends xDeathMatch;
 //=============================================================================
 
 
-// var array<string> WeaponList;
+var int NumResets;
+var float ResetInterval;
 
 // event PreBeginPlay()
 // {
@@ -78,7 +79,7 @@ function RestartPlayer(Controller aPlayer)
 // TODO: implement logic for random weapon switch once all of the other 
 //       functionality has been ironed out. See pseudocode in Timer()
 ///////////////////////////////////////////////////////////////////////////////
-/*State MatchInProgress
+State MatchInProgress
 {
     function Timer()
     {
@@ -91,73 +92,44 @@ function RestartPlayer(Controller aPlayer)
         //      give everyone a random gun
         //      increment random round counter
         //      play sound
-        Super.Timer();
-        Global.Timer(); // calls GameInfo.Timer()
-		if (!bFinalStartup)
-		{
-			bFinalStartup = true;
-			PlayStartupMessage();
-		}
-        if (bForceRespawn)
+        
+        local Pawn P;
+
+        log("Timer() called, NumResets="$string(NumResets));
+        NumResets -= 1;
+        log("NumResets="$string(NumResets));
+        if (NumResets <= 0)
         {
-            For ( P=Level.ControllerList; P!=None; P=P.NextController )
+            Super.Timer();
+        }
+        if(NumResets > 0)
+        {
+            foreach DynamicActors(class'Pawn', P)
             {
-                if((P.Pawn == None) && 
-                    P.IsA('PlayerController') && 
-                    !P.PlayerReplicationInfo.bOnlySpectator)
-                {
-                    PlayerController(P).ServerReStartPlayer();
-                }
+                P.Weapon.Destroy();
+                AddDefaultInventory(P);
             }
         }
-        if (NeedPlayers() && AddBot() && (RemainingBots > 0) )
-        {
-			RemainingBots--;
-        }
-
-        if ( bOverTime )
-        {
-			EndGame(None,"TimeLimit");
-        }
-        else if ( TimeLimit > 0 )
-        {
-            GameReplicationInfo.bStopCountDown = false;
-            RemainingTime--;
-            GameReplicationInfo.RemainingTime = RemainingTime;
-            if ( RemainingTime % 60 == 0 )
-                GameReplicationInfo.RemainingMinute = RemainingTime;
-            if ( RemainingTime <= 0 )
-                EndGame(None,"TimeLimit");
-        }
-        else if ( (MaxLives > 0) && (NumPlayers + NumBots != 1) )
-			CheckMaxLives(none);
-
-        ElapsedTime++;
-        GameReplicationInfo.ElapsedTime = ElapsedTime;
     }
-
     function beginstate()
     {
-		local PlayerReplicationInfo PRI;
-
-		ForEach DynamicActors(class'PlayerReplicationInfo',PRI)
-			PRI.StartTime = 0;
-		ElapsedTime = 0;
-		bWaitingToStartMatch = false;
-        StartupStage = 5;
-        PlayStartupMessage();
-        StartupStage = 6;
+        Super.beginstate();
+        NumResets = TimeLimit*(60.0 / ResetInterval);
+        SetTimer(ResetInterval, true);
     }
-}*/
+}
 
 defaultproperties
 {
     GameName="Randomizer"
     Description="FFA except everyone's weapons are randomized every so often for a set amount of rounds"
-    GoalScore=10
+    GoalScore=25
+    NumRounds=1
     bAutoNumBots=True
     TimeLimit=20
     MutatorClass="RandomizerGame.RandMutator"
+    // NumResets=40
+    ResetInterval=30.0
 
     // //Test weapon array
     // WeaponList[0]="xWeapons.BioRifle"
