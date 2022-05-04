@@ -13,7 +13,8 @@ class RandomizerGametype extends xDeathMatch;
 
 
 var int NumResets;
-var float ResetInterval;
+var int ResetInterval;
+var int ResetIntervalRemaining;
 
 // event PreBeginPlay()
 // {
@@ -95,28 +96,47 @@ State MatchInProgress
         
         local Pawn P;
 
-        log("Timer() called, NumResets="$string(NumResets));
-        NumResets -= 1;
-        TimeLimit -= ResetInterval;
-        log("NumResets="$string(NumResets));
-        if (NumResets <= 0)
+        Global.Timer();
+        Super.Timer(); // might need Super(DeathMatch)
+
+        ResetIntervalRemaining -= 1;
+
+        if (ResetIntervalRemaining <= 0)
         {
-            Super.Timer();
-        }
-        if(NumResets > 0)
-        {
+            ResetIntervalRemaining = ResetInterval;
+            NumResets -= 1;
+
             foreach DynamicActors(class'Pawn', P)
             {
                 P.Weapon.Destroy();
                 AddDefaultInventory(P);
             }
+
         }
+        
+        // NumResets -= 1;
+        // log("Timer() called, NumResets="$string(NumResets));
+        // RemainingTime -= ResetInterval;
+        
+        // if (NumResets <= 0)
+        // {
+        //     Super(DeathMatch).Timer();
+        // }
+        // if(NumResets > 0)
+        // {
+        //     foreach DynamicActors(class'Pawn', P)
+        //     {
+        //         P.Weapon.Destroy();
+        //         AddDefaultInventory(P);
+        //     }
+        // }
     }
     function beginstate()
     {
         Super.beginstate();
-        NumResets = TimeLimit*(60.0 / ResetInterval);
-        SetTimer(ResetInterval, true);
+        NumResets = TimeLimit*(60 / ResetInterval);
+        ResetIntervalRemaining = ResetInterval;
+        // SetTimer(float(ResetInterval), true);
     }
 }
 
@@ -130,7 +150,7 @@ defaultproperties
     TimeLimit=20
     MutatorClass="RandomizerGame.RandMutator"
     // NumResets=40
-    ResetInterval=30.0
+    ResetInterval=30
 
     // //Test weapon array
     // WeaponList[0]="xWeapons.BioRifle"
