@@ -29,7 +29,7 @@ function RestartPlayer(Controller aPlayer)
 {
     // class'RandMutator'.GetRandomWeapon();
     // aPlayer.Pawn.CreateInventory(BaseMutator.DefaultWeaponName);
-    log("RestartPlayer called");
+    // log("RestartPlayer called");
     
     Super.RestartPlayer(aPlayer);
 }
@@ -109,27 +109,10 @@ State MatchInProgress
             foreach DynamicActors(class'Pawn', P)
             {
                 P.Weapon.Destroy();
+                P.Weapon.Destroyed();
                 AddDefaultInventory(P);
             }
-
         }
-        
-        // NumResets -= 1;
-        // log("Timer() called, NumResets="$string(NumResets));
-        // RemainingTime -= ResetInterval;
-        
-        // if (NumResets <= 0)
-        // {
-        //     Super(DeathMatch).Timer();
-        // }
-        // if(NumResets > 0)
-        // {
-        //     foreach DynamicActors(class'Pawn', P)
-        //     {
-        //         P.Weapon.Destroy();
-        //         AddDefaultInventory(P);
-        //     }
-        // }
     }
     function beginstate()
     {

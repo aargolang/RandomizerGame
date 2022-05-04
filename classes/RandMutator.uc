@@ -23,7 +23,7 @@ function GetRandomWeapon()
     local int i;
     i = Rand(WeaponList.Length);
     
-    log("Old Default Weapon: "$DefaultWeaponName);
+    // log("Old Default Weapon: "$DefaultWeaponName);
 
     DefaultWeaponName = WeaponList[i];
 
@@ -38,7 +38,7 @@ function Class<Weapon> GetDefaultWeapon()
 {
 	local Class<Weapon> W;
 
-    log("GetDefaultWeapon() called");
+    // log("GetDefaultWeapon() called");
 
 	if ( NextMutator != None )
 	{
@@ -54,7 +54,7 @@ function Class<Weapon> GetDefaultWeapon()
 // Put call to GetRandomWeapon here, this gets called for every player spawn
 function class<Weapon> MyDefaultWeapon()
 {
-    log("MyDefaultWweapon() called");
+    // log("MyDefaultWeapon() called");
 
 	GetRandomWeapon();
 	DefaultWeapon = class<Weapon>(DynamicLoadObject(DefaultWeaponName, class'Class'));
@@ -82,7 +82,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
     }
     else if(Other.IsA('Weapon'))
     {
-        log("check weapon: "$GetItemName(string(Other)));
+        // log("check weapon: "$GetItemName(string(Other)));
 
         if(GetItemName(string(Other)) != GetItemName(string(DefaultWeapon)))
         {
