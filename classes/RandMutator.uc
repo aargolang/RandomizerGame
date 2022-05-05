@@ -10,6 +10,7 @@ function PostBeginPlay()
 function ModifyPlayer(Pawn Other)
 {
     Super.ModifyPlayer(Other);
+    Other.Weapon.MaxOutAmmo();
     // log("player modified");
 }
 
@@ -101,5 +102,6 @@ defaultproperties
     WeaponList[1]="xWeapons.LinkGun"
     WeaponList[2]="xWeapons.FlakCannon"
     WeaponList[3]="xWeapons.RocketLauncher"
+    // WeaponList[4]="xWeapons.Minigun"
     WeaponList[4]="InstaFlak.SuperFlakCannon"
 }

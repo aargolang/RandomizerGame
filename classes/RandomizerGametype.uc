@@ -27,11 +27,24 @@ var int ResetIntervalRemaining;
 ///////////////////////////////////////////////////////////////////////////////
 function RestartPlayer(Controller aPlayer)
 {
-    // class'RandMutator'.GetRandomWeapon();
-    // aPlayer.Pawn.CreateInventory(BaseMutator.DefaultWeaponName);
     // log("RestartPlayer called");
     
     Super.RestartPlayer(aPlayer);
+
+    FillAmmo(aPlayer.Pawn);
+}
+
+function FillAmmo(Pawn P)
+{
+    local Inventory Inv;
+
+    for(Inv=P.Inventory; Inv!=None; Inv=Inv.Inventory)
+    {
+        if(Weapon(Inv) != None)
+        {
+            Weapon(Inv).MaxOutAmmo();
+        }
+    }
 }
 
 // ///////////////////////////////////////////////////////////////////////////////
@@ -111,6 +124,7 @@ State MatchInProgress
                 P.Weapon.Destroy();
                 P.Weapon.Destroyed();
                 AddDefaultInventory(P);
+                FillAmmo(P);
             }
         }
     }
