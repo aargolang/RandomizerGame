@@ -10,7 +10,6 @@ function PostBeginPlay()
 function ModifyPlayer(Pawn Other)
 {
     Super.ModifyPlayer(Other);
-    Other.Weapon.MaxOutAmmo();
     // log("player modified");
 }
 
@@ -22,12 +21,19 @@ function ModifyPlayer(Pawn Other)
 function GetRandomWeapon()
 {
     local int i;
-    i = Rand(WeaponList.Length);
-    
+    local int n;
+    local String W;
     // log("Old Default Weapon: "$DefaultWeaponName);
+    n = Rand(WeaponList.Length);
+    W = WeaponList[n];
+    for( i=0; W == DefaultWeaponName; i++)
+    {
+        log("Same gun");
+        n = Rand(WeaponList.Length);
+        W = WeaponList[n];
+    }
 
-    DefaultWeaponName = WeaponList[i];
-
+    DefaultWeaponName = W;
     log("New Default Weapon: "$DefaultWeaponName);
 
 }

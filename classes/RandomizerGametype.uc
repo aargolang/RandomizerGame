@@ -121,8 +121,8 @@ State MatchInProgress
 
             foreach DynamicActors(class'Pawn', P)
             {
+                // P.Weapon.Destroyed();
                 P.Weapon.Destroy();
-                P.Weapon.Destroyed();
                 AddDefaultInventory(P);
                 FillAmmo(P);
             }
