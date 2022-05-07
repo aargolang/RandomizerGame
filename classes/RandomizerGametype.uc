@@ -18,6 +18,14 @@ var int NumResets;
 var int ResetInterval;
 var int ResetIntervalRemaining;
 
+// This is for when the user uses %X var parsing in the chat
+function string ParseChatPercVar(Controller Who, string Cmd)
+{
+    Log("in randmutator ParseChatPercVar");
+    Log(cmd);
+    Super.ParseChatPercVar(Who, Cmd);
+}
+
 
 // event PreBeginPlay()
 // {
