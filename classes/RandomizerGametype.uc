@@ -30,7 +30,7 @@ var int ResetIntervalRemaining;
 ///////////////////////////////////////////////////////////////////////////////
 function RestartPlayer(Controller aPlayer)
 {
-    local int i;
+    // local int i;
     local class<Weapon> OldWeapon;
     OldWeapon = aPlayer.LastPawnWeapon;
     
@@ -38,7 +38,7 @@ function RestartPlayer(Controller aPlayer)
     
     Super.RestartPlayer(aPlayer);
 
-    for(i=0; OldWeapon == BaseMutator.DefaultWeapon; i++)
+    while(OldWeapon == BaseMutator.DefaultWeapon)
     {
         log("same gun");
         aPlayer.Pawn.Weapon.Destroy();
@@ -129,7 +129,7 @@ State MatchInProgress
         
         local Controller C;
         local class<Weapon> OldWeapon;
-        local int i;
+        // local int i;
 
         Global.Timer();
         Super.Timer(); // might need Super(DeathMatch)
@@ -149,7 +149,7 @@ State MatchInProgress
 
                 C.Pawn.Weapon.Destroy();
                 AddDefaultInventory(C.Pawn);
-                for(i=0; OldWeapon == BaseMutator.DefaultWeapon; i++)
+                while(OldWeapon == BaseMutator.DefaultWeapon)
                 {
                     C.Pawn.Weapon.Destroy();
                     AddDefaultInventory(C.Pawn);

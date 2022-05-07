@@ -111,4 +111,6 @@ defaultproperties
     WeaponList[3]="xWeapons.RocketLauncher"
     WeaponList[4]="xWeapons.Minigun"
     // WeaponList[4]="InstaFlak.SuperFlakCannon"
+
+    bAddToServerPackages=true;
 }
