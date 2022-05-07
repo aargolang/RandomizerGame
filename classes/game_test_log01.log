@@ -1,0 +1,250 @@
+Error loading cDOM-UTClassic-Cryptic !
+Failed to load 'cDOM2': Can't find file for package 'cDOM2'
+Failed to load 'cDOM-UTClassic-Condemned': Can't find file for package 'cDOM2'
+Failed to load 'LevelSummary cDOM-UTClassic-Condemned.LevelSummary': Can't find file for package 'cDOM2'
+Error loading cDOM-UTClassic-Condemned !
+Failed to load 'cDOM2': Can't find file for package 'cDOM2'
+Failed to load 'cDOM-UTClassic-Cinder': Can't find file for package 'cDOM2'
+Failed to load 'LevelSummary cDOM-UTClassic-Cinder.LevelSummary': Can't find file for package 'cDOM2'
+Error loading cDOM-UTClassic-Cinder !
+Failed to load 'cDOM2': Can't find file for package 'cDOM2'
+Failed to load 'cDOM-UTClassic-Cidom': Can't find file for package 'cDOM2'
+Failed to load 'LevelSummary cDOM-UTClassic-Cidom.LevelSummary': Can't find file for package 'cDOM2'
+Error loading cDOM-UTClassic-Cidom !
+Failed to load 'cDOM2': Can't find file for package 'cDOM2'
+Failed to load 'cDOM-UTClassic-Bullet': Can't find file for package 'cDOM2'
+Failed to load 'LevelSummary cDOM-UTClassic-Bullet.LevelSummary': Can't find file for package 'cDOM2'
+Error loading cDOM-UTClassic-Bullet !
+UdpServerQuery(crt): Port 7787 successfully bound.
+Resolving master0.gamespy.com...
+MasterServerUplink: MasterServerGameStats not found - stats uploading disabled.
+Defaulting to false
+Defaulting to false
+Resolving ut2004master2.epicgames.com...
+Webserver is not enabled.Set bEnabled to True in Advanced Options.
+MasterServerUplink: Failed to resolve master server ut2004master2.epicgames.com.
+Master server connection failed
+AInternetLink Resolve failed: Can't find host master0.gamespy.com (WSAHOST_NOT_FOUND)
+UdpGameSpyUplink: Failed to resolve master server address, aborting.
+Open myLevel 05/06/22 19:06:07 127.0.0.1:65187
+Client netspeed is 10000
+Close TcpipConnection 127.0.0.1:65187 05/06/22 19:06:07
+Open myLevel 05/06/22 19:06:07 127.0.0.1:65187
+Open myLevel 05/06/22 19:06:07 127.0.0.1:53173
+Close TcpipConnection 127.0.0.1:65187 05/06/22 19:06:07
+Client netspeed is 10000
+Attempting to reconnect to master server!
+Resolving ut2004master1.epicgames.com...
+MasterServerUplink: Resolved ut2004master1.epicgames.com as 3.218.5.215.
+MasterServerUplink: Connection to ut2004master1.epicgames.com established.
+New Player BoomPotato id=10b93b6c6ece2e026a9060c71a5e0df0
+Approval APPROVED
+Master server requests heartbeat 0 with code 1520
+Master server requests heartbeat 1 with code 1520
+Master server requests heartbeat 2 with code 1520
+Master server assigned our MatchID: 0
+Open myLevel 05/06/22 19:06:40 47.42.128.30:57251
+Client netspeed is 10000
+Close TcpipConnection 47.42.128.30:57251 05/06/22 19:06:40
+Open myLevel 05/06/22 19:06:40 47.42.128.30:57251
+Open myLevel 05/06/22 19:06:40 47.42.128.30:57252
+Client netspeed is 10000
+New Player Mr._Sexy_Time id=a8425147ab7b9d6c8b92687049d75ac6
+
+//////////////////////
+// GAME STARTS HERE //
+//////////////////////
+
+New Default Weapon: xWeapons.RocketLauncher
+valid weapon: RocketLauncher
+New Default Weapon: xWeapons.LinkGun
+valid weapon: LinkGun
+START MATCH
+New Default Weapon: xWeapons.LinkGun
+valid weapon: LinkGun
+New Default Weapon: xWeapons.FlakCannon
+valid weapon: FlakCannon
+New Default Weapon: xWeapons.Minigun
+valid weapon: Minigun
+New Default Weapon: xWeapons.RocketLauncher
+valid weapon: RocketLauncher
+New Default Weapon: xWeapons.FlakCannon
+valid weapon: FlakCannon
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.MatchInProgress.Timer:00B8) Accessed None 'Weapon'
+New Default Weapon: xWeapons.BioRifle
+valid weapon: BioRifle
+New Default Weapon: xWeapons.FlakCannon
+valid weapon: FlakCannon
+New Default Weapon: xWeapons.FlakCannon
+valid weapon: FlakCannon
+
+//////////////////////////////////////
+// weird stuff happens around here? //
+////////////////////////////////////// 
+
+same gun
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.RestartPlayer:005B) Accessed None 'Weapon'
+New Default Weapon: xWeapons.FlakCannon
+same gun
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.RestartPlayer:005B) Accessed None 'Weapon'
+New Default Weapon: xWeapons.RocketLauncher
+valid weapon: RocketLauncher
+New Default Weapon: xWeapons.Minigun
+valid weapon: Minigun
+New Default Weapon: xWeapons.BioRifle
+New Default Weapon: xWeapons.BioRifle
+valid weapon: BioRifle
+New Default Weapon: xWeapons.RocketLauncher
+valid weapon: RocketLauncher
+New Default Weapon: xWeapons.Minigun
+valid weapon: Minigun
+New Default Weapon: xWeapons.RocketLauncher
+valid weapon: RocketLauncher
+New Default Weapon: xWeapons.FlakCannon
+valid weapon: FlakCannon
+New Default Weapon: xWeapons.Minigun
+valid weapon: Minigun
+New Default Weapon: xWeapons.BioRifle
+valid weapon: BioRifle
+New Default Weapon: xWeapons.Minigun
+valid weapon: Minigun
+New Default Weapon: xWeapons.Minigun
+valid weapon: Minigun
+New Default Weapon: xWeapons.Minigun
+valid weapon: Minigun
+same gun
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.RestartPlayer:005B) Accessed None 'Weapon'
+New Default Weapon: xWeapons.LinkGun
+valid weapon: LinkGun
+New Default Weapon: xWeapons.LinkGun
+valid weapon: LinkGun
+same gun
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.RestartPlayer:005B) Accessed None 'Weapon'
+New Default Weapon: xWeapons.LinkGun
+same gun
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.RestartPlayer:005B) Accessed None 'Weapon'
+New Default Weapon: xWeapons.BioRifle
+valid weapon: BioRifle
+New Default Weapon: xWeapons.FlakCannon
+valid weapon: FlakCannon
+New Default Weapon: xWeapons.Minigun
+valid weapon: Minigun
+Close TcpipConnection 47.42.128.30:57251 05/06/22 19:10:00
+New Default Weapon: xWeapons.FlakCannon
+valid weapon: FlakCannon
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.MatchInProgress.Timer:00B8) Accessed None 'Weapon'
+New Default Weapon: xWeapons.LinkGun
+valid weapon: LinkGun
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.MatchInProgress.Timer:006E) Accessed None 'Weapon'
+New Default Weapon: xWeapons.LinkGun
+New Default Weapon: xWeapons.FlakCannon
+valid weapon: FlakCannon
+New Default Weapon: xWeapons.Minigun
+valid weapon: Minigun
+New Default Weapon: xWeapons.BioRifle
+valid weapon: BioRifle
+New Default Weapon: xWeapons.Minigun
+valid weapon: Minigun
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.MatchInProgress.Timer:00B8) Accessed None 'Weapon'
+New Default Weapon: xWeapons.RocketLauncher
+valid weapon: RocketLauncher
+New Default Weapon: xWeapons.LinkGun
+valid weapon: LinkGun
+New Default Weapon: xWeapons.FlakCannon
+valid weapon: FlakCannon
+New Default Weapon: xWeapons.LinkGun
+valid weapon: LinkGun
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.MatchInProgress.Timer:00B8) Accessed None 'Weapon'
+New Default Weapon: xWeapons.BioRifle
+New Default Weapon: xWeapons.LinkGun
+valid weapon: LinkGun
+New Default Weapon: xWeapons.BioRifle
+valid weapon: BioRifle
+New Default Weapon: xWeapons.LinkGun
+valid weapon: LinkGun
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.MatchInProgress.Timer:00B8) Accessed None 'Weapon'
+New Default Weapon: xWeapons.Minigun
+valid weapon: Minigun
+New Default Weapon: xWeapons.LinkGun
+valid weapon: LinkGun
+New Default Weapon: xWeapons.FlakCannon
+valid weapon: FlakCannon
+
+
+///////////////////
+// lots of None  //
+/////////////////// 
+
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.MatchInProgress.Timer:0066) Accessed None 'Pawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.MatchInProgress.Timer:006E) Accessed None
+New Default Weapon: xWeapons.BioRifle
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.AddDefaultInventory:002B) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.AddDefaultInventory:0051) Accessed None 'PlayerPawn'
+valid weapon: BioRifle
+BioRifle DM-1on1-Albatross.BioRifle (Function Engine.Weapon.GiveTo:001C) Accessed None 'Instigator'
+BioRifle DM-1on1-Albatross.BioRifle (Function Engine.Inventory.GiveTo:0014) Accessed None 'Other'
+BioRifle DM-1on1-Albatross.BioRifle (Function Engine.Weapon.GiveTo:00E7) Accessed None 'W'
+BioRifle DM-1on1-Albatross.BioRifle (Function Engine.Weapon.GiveTo:00E7) Accessed None 'W'
+BioRifle DM-1on1-Albatross.BioRifle (Function Engine.Weapon.GiveTo:0119) Accessed None 'Instigator'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.AddDefaultInventory:0080) Accessed None 'newWeapon'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:0007) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:000F) Attempt to assign variable through None
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:0015) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:0024) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:002C) Attempt to assign variable through None
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:0032) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:0041) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:0049) Attempt to assign variable through None
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:004F) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:005E) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:0066) Attempt to assign variable through None
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:006C) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:007B) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:0083) Attempt to assign variable through None
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:0089) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:0098) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:00A0) Attempt to assign variable through None
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:00A6) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.FillAmmo:000C) Accessed None 'P'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.MatchInProgress.Timer:0066) Accessed None 'Pawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.MatchInProgress.Timer:006E) Accessed None
+New Default Weapon: xWeapons.BioRifle
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.AddDefaultInventory:002B) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.AddDefaultInventory:0051) Accessed None 'PlayerPawn'
+valid weapon: BioRifle
+BioRifle DM-1on1-Albatross.BioRifle (Function Engine.Weapon.GiveTo:001C) Accessed None 'Instigator'
+BioRifle DM-1on1-Albatross.BioRifle (Function Engine.Inventory.GiveTo:0014) Accessed None 'Other'
+BioRifle DM-1on1-Albatross.BioRifle (Function Engine.Weapon.GiveTo:00E7) Accessed None 'W'
+BioRifle DM-1on1-Albatross.BioRifle (Function Engine.Weapon.GiveTo:00E7) Accessed None 'W'
+BioRifle DM-1on1-Albatross.BioRifle (Function Engine.Weapon.GiveTo:0119) Accessed None 'Instigator'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.AddDefaultInventory:0080) Accessed None 'newWeapon'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:0007) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:000F) Attempt to assign variable through None
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:0015) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:0024) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:002C) Attempt to assign variable through None
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:0032) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:0041) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:0049) Attempt to assign variable through None
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:004F) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:005E) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:0066) Attempt to assign variable through None
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:006C) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:007B) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:0083) Attempt to assign variable through None
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:0089) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:0098) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:00A0) Attempt to assign variable through None
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function Engine.GameInfo.SetPlayerDefaults:00A6) Accessed None 'PlayerPawn'
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.FillAmmo:000C) Accessed None 'P'
+New Default Weapon: xWeapons.BioRifle
+valid weapon: BioRifle
+New Default Weapon: xWeapons.RocketLauncher
+valid weapon: RocketLauncher
+New Default Weapon: xWeapons.RocketLauncher
+valid weapon: RocketLauncher
+RandomizerGametype DM-1on1-Albatross.RandomizerGametype (Function RandomizerGame.RandomizerGametype.MatchInProgress.Timer:00B8) Accessed None 'Weapon'
+New Default Weapon: xWeapons.LinkGun
+valid weapon: LinkGun
+New Default Weapon: xWeapons.Minigun
+valid weapon: Minigun

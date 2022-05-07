@@ -20,21 +20,13 @@ function ModifyPlayer(Pawn Other)
 ///////////////////////////////////////////////////////////////////////////////
 function GetRandomWeapon()
 {
-    // local int i;
-    local int n;
-    local String W;
+    local int i;
 
     // log("Old Default Weapon: "$DefaultWeaponName);
-    n = Rand(WeaponList.Length);
-    W = WeaponList[n];
-    // for( i=0; W == DefaultWeaponName; i++)
-    // {
-    //     log("Same gun");
-    //     n = Rand(WeaponList.Length);
-    //     W = WeaponList[n];
-    // }
+    i = Rand(WeaponList.Length);
 
-    DefaultWeaponName = W;
+    DefaultWeaponName = WeaponList[i];
+    
     log("New Default Weapon: "$DefaultWeaponName);
 
 }
@@ -111,4 +103,6 @@ defaultproperties
     WeaponList[3]="xWeapons.RocketLauncher"
     WeaponList[4]="xWeapons.Minigun"
     // WeaponList[4]="InstaFlak.SuperFlakCannon"
+
+    bAddToServerPackages=True;
 }
