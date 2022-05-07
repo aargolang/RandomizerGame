@@ -135,14 +135,15 @@ function ReRoll()
         if(C.Pawn != None)
         {
             //Play sound announcing switch - not working
-            ClientPlaySound(sound'GameSounds.Fanfares.UT2K3Fanfare08');
+            C.PlaySound(sound'GameSounds.Fanfares.UT2K3Fanfare08');
 
             log("New gun for: "$string(C));
             //Save current weapon class and destroy weapon
             if(C.Pawn.Weapon != None)
             {
                 C.LastPawnWeapon = C.Pawn.Weapon.Class;
-                C.Pawn.Weapon.ImmediateStopFire(); //Stop fire on current weapon, fixes sound bug
+                C.Pawn.Weapon.ImmediateStopFire(); //Stop fire on current weapon, fixes most sound bugs
+                C.Pawn.AmbientSound = None; //Not sure why needed, stops minigun winding sound
                 C.Pawn.Weapon.Destroy();
                 log("Old weapon destroyed");
             }
