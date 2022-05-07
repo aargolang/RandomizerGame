@@ -12,7 +12,7 @@ class RandomizerGametype extends xDeathMatch;
 //=============================================================================
 
 
-// #exec OBJ LOAD FILE="..\Sounds\NewWeaponSounds.uax"
+#exec OBJ LOAD FILE="..\Sounds\NewWeaponSounds.uax"
 
 var int NumResets;
 var int ResetInterval;
@@ -44,10 +44,10 @@ function RestartPlayer(Controller aPlayer)
         aPlayer.Pawn.Weapon.Destroy();
         AddDefaultInventory(aPlayer.Pawn);
     }
-
     FillAmmo(aPlayer.Pawn);
 }
 
+//Fill ammo to max
 function FillAmmo(Pawn P)
 {
     local Inventory Inv;
@@ -61,34 +61,6 @@ function FillAmmo(Pawn P)
     }
 }
 
-//
-// Spawn any default inventory for the player.
-//
-function AddDefaultInventory( pawn PlayerPawn )
-{
-    local Weapon newWeapon;
-    local class<Weapon> WeapClass;
-
-    // Spawn default weapon.
-    WeapClass = BaseMutator.GetDefaultWeapon();
-
-    // for( i=0; WeapClass == C.LastPawnWeapon; i++)
-    // {
-    //     WeapClass = BaseMutator.GetDefaultWeapon();
-    // }
-
-    if( (WeapClass!=None) && (PlayerPawn.FindInventoryType(WeapClass)==None) )
-    {
-        newWeapon = Spawn(WeapClass,,,PlayerPawn.Location);
-        if( newWeapon != None )
-        {
-            newWeapon.GiveTo(PlayerPawn);
-            //newWeapon.BringUp();
-            newWeapon.bCanThrow = false; // don't allow default weapon to be thrown out
-        }
-    }
-    SetPlayerDefaults(PlayerPawn);
-}
 // ///////////////////////////////////////////////////////////////////////////////
 // // InitGame (extended from DeathMatch.uc)
 // // 
@@ -127,8 +99,8 @@ State MatchInProgress
         //      increment random round counter
         //      play sound
         
-        local Controller C;
-        local class<Weapon> OldWeapon;
+        // local Controller C;
+        // local class<Weapon> OldWeapon;
         // local int i;
 
         Global.Timer();
@@ -140,23 +112,26 @@ State MatchInProgress
         {
             ResetIntervalRemaining = ResetInterval;
             NumResets -= 1;
+
+            ReRoll();
             
-            foreach DynamicActors(class'Controller', C)
-            {
-                
-                // PlaySound(sound'NewWeaponSounds.WeaponsLocker_01');
-                OldWeapon = C.LastPawnWeapon;
+            // foreach DynamicActors(class'Controller', C)
+            // {
+            //     // PlaySound(sound'NewWeaponSounds.WeaponsLocker_01');
+            //     if(C.Pawn != None)
+            //     {
+            //         OldWeapon = C.LastPawnWeapon;
 
-                C.Pawn.Weapon.Destroy();
-                AddDefaultInventory(C.Pawn);
-                while(OldWeapon == BaseMutator.DefaultWeapon)
-                {
-                    C.Pawn.Weapon.Destroy();
-                    AddDefaultInventory(C.Pawn);
-                }
-
-                FillAmmo(C.Pawn);
-            }
+            //         C.Pawn.Weapon.Destroy();
+            //         AddDefaultInventory(C.Pawn);
+            //         while(OldWeapon == BaseMutator.DefaultWeapon)
+            //         {
+            //             C.Pawn.Weapon.Destroy();
+            //             AddDefaultInventory(C.Pawn);
+            //         }
+            //         FillAmmo(C.Pawn);
+            //     }
+            // }
         }
     }
     function beginstate()
@@ -165,6 +140,40 @@ State MatchInProgress
         NumResets = TimeLimit*(60 / ResetInterval);
         ResetIntervalRemaining = ResetInterval;
         // SetTimer(float(ResetInterval), true);
+    }
+}
+
+//Replace each player's gun with a new random gun
+function ReRoll()
+{
+    local Controller C;
+    local class<Weapon> OldWeapon;
+    
+    log("re-rolling...");
+
+    PlaySound(sound'NewWeaponSounds.WeaponsLocker_01');
+
+    foreach DynamicActors(class'Controller', C)
+    {
+        // PlaySound(sound'NewWeaponSounds.WeaponsLocker_01');
+        if(C.Pawn != None)
+        {
+            log("new gun for: "$string(C));
+            OldWeapon = C.LastPawnWeapon;
+
+            C.Pawn.Weapon.Destroy();
+            AddGameSpecificInventory(C.Pawn);
+            while(OldWeapon == BaseMutator.DefaultWeapon)
+            {
+                log("same gun: "$string(OldWeapon));
+                if(C.Pawn.Weapon != None)
+                {
+                    C.Pawn.Weapon.Destroy();
+                }
+                AddGameSpecificInventory(C.Pawn);
+            }
+            FillAmmo(C.Pawn);
+        }
     }
 }
 
@@ -179,6 +188,7 @@ defaultproperties
     MutatorClass="RandomizerGame.RandMutator"
     // NumResets=40
     ResetInterval=30
+    bWeaponStay=False
 
     // //Test weapon array
     // WeaponList[0]="xWeapons.BioRifle"
