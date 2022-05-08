@@ -122,11 +122,7 @@ function ReRoll()
         if(C.Pawn != None)
         {
             //Play sound announcing switch - not working
-<<<<<<< HEAD
-            C.PlaySound(sound'GameSounds.Fanfares.UT2K3Fanfare08');
-=======
             // ClientPlaySound(sound'GameSounds.Fanfares.UT2K3Fanfare08');
->>>>>>> arthur/work
 
             log("New gun for: "$string(C));
             //Save current weapon class and destroy weapon
