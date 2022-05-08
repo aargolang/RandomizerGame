@@ -15,14 +15,17 @@ class RandomizerGametype extends xDeathMatch;
 #exec OBJ LOAD FILE="..\Sounds\GameSounds.uax"
 
 var int NumResets;
-var int ResetInterval;
+var config int ResetInterval;
 var int ResetIntervalRemaining;
+var string RandomizerPropDescText[2];
+var string RandomizerPropsDisplayText[2];
 
-
-// event PreBeginPlay()
+// This is for when the user uses %X var parsing in the chat
+// function string ParseChatPercVar(Controller Who, string Cmd)
 // {
-//     // GetRandomWeapon();
-//     Super.PreBeginPlay();
+//     Log("in randmutator ParseChatPercVar");
+//     Log(cmd);
+//     Super.ParseChatPercVar(Who, Cmd);
 // }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -60,22 +63,6 @@ function FillAmmo(Pawn P)
         }
     }
 }
-
-// ///////////////////////////////////////////////////////////////////////////////
-// // InitGame (extended from DeathMatch.uc)
-// // 
-// // TODO: parse Randomizations and RandomInterval from the setup UI
-// // TODO: Set timelimit based on randomizations and time interval
-// // NOTE: We might need to completely override the one in DeathMatch.uc and
-// //       call Super(UnrealMPGameInfo).InitGame to bypass Deathmatch InitGame
-// ///////////////////////////////////////////////////////////////////////////////
-// event InitGame( string Options, out string Error )
-// {
-//     Super.InitGame(Options, Error);
-//     GetRandomWeapon();
-
-//     // TimeLimit = Randomizations*RandomizationInterval;
-// }
 
 ///////////////////////////////////////////////////////////////////////////////
 // MatchInProgress state (extended from DeathMatch.uc)
@@ -135,7 +122,11 @@ function ReRoll()
         if(C.Pawn != None)
         {
             //Play sound announcing switch - not working
+<<<<<<< HEAD
             C.PlaySound(sound'GameSounds.Fanfares.UT2K3Fanfare08');
+=======
+            // ClientPlaySound(sound'GameSounds.Fanfares.UT2K3Fanfare08');
+>>>>>>> arthur/work
 
             log("New gun for: "$string(C));
             //Save current weapon class and destroy weapon
@@ -174,6 +165,107 @@ function ReRoll()
     log("Done rolling");
 }
 
+
+static function FillPlayInfo(PlayInfo PlayInfo)
+{
+    local int i;
+	Super(Info).FillPlayInfo(PlayInfo);  // Always begin with calling parent
+
+    // Randomizer settings
+	PlayInfo.AddSetting(default.GameGroup,   "ResetInterval",  GetDisplayText("ResetInterval"),  0,        1, "Text","3;1:600"    ,,,);
+
+    // Duplicated settings from DeathMatch, UnrealMPGameInfo, GameInfo
+    PlayInfo.AddSetting(default.BotsGroup,   "GameDifficulty",			GetDisplayText("GameDifficulty"), 		0, 2, "Select", default.GIPropsExtras[0], "Xb");
+	PlayInfo.AddSetting(default.GameGroup,   "GoalScore",				GetDisplayText("GoalScore"), 			0, 0, "Text",     "3;0:999");
+	PlayInfo.AddSetting(default.GameGroup,   "TimeLimit",				GetDisplayText("TimeLimit"), 			0, 0, "Text",     "3;0:999");
+	PlayInfo.AddSetting(default.GameGroup,   "MaxLives",				GetDisplayText("MaxLives"), 			0, 0, "Text",     "3;0:999");
+	PlayInfo.AddSetting(default.RulesGroup,  "bAllowWeaponThrowing",	GetDisplayText("bAllowWeaponThrowing"), 1, 0, "Check",             ,            ,    ,True);
+	PlayInfo.AddSetting(default.RulesGroup,  "bAllowBehindView",		GetDisplayText("bAllowBehindview"), 	1, 0, "Check",             ,            ,True,True);
+	PlayInfo.AddSetting(default.RulesGroup,  "bWeaponShouldViewShake",	GetDisplayText("bWeaponShouldViewShake"),1, 0, "Check",            ,            ,    ,True);
+	PlayInfo.AddSetting(default.ServerGroup, "bEnableStatLogging",		GetDisplayText("bEnableStatLogging"), 	0, 1, "Check",             ,            ,True);
+	PlayInfo.AddSetting(default.ServerGroup, "bAdminCanPause",			GetDisplayText("bAdminCanPause"), 		1, 1, "Check",             ,            ,True,True);
+	PlayInfo.AddSetting(default.ServerGroup, "MaxSpectators",			GetDisplayText("MaxSpectators"), 		1, 1, "Text",      "3;0:32",            ,True,True);
+	PlayInfo.AddSetting(default.ServerGroup, "MaxPlayers",				GetDisplayText("MaxPlayers"), 			0, 1, "Text",      "3;0:32",            ,True);
+	PlayInfo.AddSetting(default.ServerGroup, "MaxIdleTime",			GetDisplayText("MaxIdleTime"), 			0, 1, "Text",      "3;0:300",            ,True,True);
+    gameinfoStartStuff(PlayInfo); // put all of the GameInfo duplicate garbage here
+	PlayInfo.AddSetting(default.BotsGroup,  "MinPlayers",         default.MPGIPropsDisplayText[i++], 0,   0,   "Text",            "3;0:32");
+	PlayInfo.AddSetting(default.GameGroup,  "EndTimeDelay",       default.MPGIPropsDisplayText[i++], 1,   1,   "Text",                    ,     ,     , True);
+	PlayInfo.AddSetting(default.BotsGroup,  "BotMode",			   default.MPGIPropsDisplayText[i++], 30,  1, "Select", default.BotModeText);
+	PlayInfo.AddSetting(default.RulesGroup, "bAllowPrivateChat",  default.MPGIPropsDisplayText[i++], 254, 1,  "Check",                    , "Xv", True, True);
+    if ( !Default.bTeamGame )
+		PlayInfo.AddSetting(default.BotsGroup,   "bAdjustSkill",        GetDisplayText("bAdjustSkill"),        0,    2, "Check",             ,,    ,True);
+	PlayInfo.AddSetting(default.GameGroup,   "SpawnProtectionTime", GetDisplayText("SpawnProtectionTime"), 2,    1,  "Text", "8;0.0:30.0",,    ,True);
+	PlayInfo.AddSetting(default.GameGroup,   "LateEntryLives",      GetDisplayText("LateEntryLives"),     50,    1,  "Text",          "3",,True,True);
+	PlayInfo.AddSetting(default.GameGroup,   "bColoredDMSkins",     GetDisplayText("bColoredDMSkins"),     1,    1, "Check",             ,,    ,True);
+	PlayInfo.AddSetting(default.GameGroup,   "bAllowPlayerLights",  GetDisplayText("bAllowPlayerLights"),  1,    1, "Check",             ,,    ,True);
+	PlayInfo.AddSetting(default.RulesGroup,  "bAllowTrans",         GetDisplayText("bAllowTrans"),         0,    1, "Check",             ,,    ,True);
+	PlayInfo.AddSetting(default.RulesGroup,  "bAllowTaunts",        GetDisplayText("bAllowTaunts"),        1,    1, "Check",             ,,    ,True);
+	PlayInfo.AddSetting(default.RulesGroup,  "bForceRespawn",       GetDisplayText("bForceRespawn"),       0,    1, "Check",             ,,True,True);
+	PlayInfo.AddSetting(default.RulesGroup,  "bPlayersMustBeReady", GetDisplayText("bPlayersMustBeReady"), 1,    1, "Check",             ,,True,True);
+	PlayInfo.AddSetting(default.ServerGroup, "MinNetPlayers",       GetDisplayText("MinNetPlayers"),       100,  1,  "Text",     "3;0:32",,True,True);
+	PlayInfo.AddSetting(default.ServerGroup, "NetWait",             GetDisplayText("NetWait"),             200,  1,  "Text",     "3;0:60",,True,True);
+	PlayInfo.AddSetting(default.ServerGroup, "RestartWait",         GetDisplayText("RestartWait"),         200,  1,  "Text",     "3;0:60",,True,True);
+	class'MasterServerUplink'.static.FillPlayInfo(PlayInfo);
+
+    PlayInfo.PopClass();
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// GameInfoStartStuff
+//
+// This logic is duplicated from GameInfo in order to get rid of bWeapnStay
+///////////////////////////////////////////////////////////////////////////////
+static function gameinfoStartStuff(PlayInfo PlayInfo)
+{
+
+	if (default.GameReplicationInfoClass != None)
+	{
+		default.GameReplicationInfoClass.static.FillPlayInfo(PlayInfo);
+		PlayInfo.PopClass();
+	}
+
+	if (default.VoiceReplicationInfoClass != None)
+	{
+		default.VoiceReplicationInfoClass.static.FillPlayInfo(PlayInfo);
+		PlayInfo.PopClass();
+	}
+
+	if (default.BroadcastClass != None)
+		default.BroadcastClass.static.FillPlayInfo(PlayInfo);
+
+	else class'BroadcastHandler'.static.FillPlayInfo(PlayInfo);
+
+	PlayInfo.PopClass();
+
+	if (class'Engine.GameInfo'.default.VotingHandlerClass != None)
+ 	{
+	 	class'Engine.GameInfo'.default.VotingHandlerClass.static.FillPlayInfo(PlayInfo);
+	 	PlayInfo.PopClass();
+	}
+	else
+		log("GameInfo::FillPlayInfo class'Engine.GameInfo'.default.VotingHandlerClass = None");
+}
+
+static function string GetDisplayText(string PropName)
+{
+	switch (PropName)
+	{
+		case "ResetInterval":            return default.RandomizerPropsDisplayText[0];
+	}
+
+	return Super.GetDisplayText(PropName);
+}
+
+static event string GetDescriptionText(string PropName)
+{
+	switch (PropName)
+	{
+		case "ResetInterval":            return default.RandomizerPropDescText[0];
+	}
+
+	return Super.GetDescriptionText(PropName);
+}
+
 defaultproperties
 {
     GameName="Randomizer"
@@ -183,15 +275,9 @@ defaultproperties
     bAutoNumBots=True
     TimeLimit=20
     MutatorClass="RandomizerGame.RandMutator"
-    // NumResets=40
     ResetInterval=10
     bWeaponStay=False
 
-    // //Test weapon array
-    // WeaponList[0]="xWeapons.BioRifle"
-    // WeaponList[1]="xWeapons.LinkGun"
-    // WeaponList[2]="xWeapons.FlakCannon"
-    // WeaponList[3]="xWeapons.RocketLauncher"
-    // WeaponList[4]="InstaFlak.SuperFlakCannon"
-
+    RandomizerPropDescText[0]="Time between randomizing all weapons in minutes"
+    RandomizerPropsDisplayText[0]="Randomization Interval"
 }
